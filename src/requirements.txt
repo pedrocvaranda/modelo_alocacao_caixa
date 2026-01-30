@@ -1,0 +1,24 @@
+# Dependências do Modelo de Alocação de Caixa
+
+# Core
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Visualização
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Excel
+openpyxl>=3.1.0
+
+# Machine Learning (futuro)
+scikit-learn>=1.3.0
+joblib>=1.3.0
+
+# Interface Gráfica (futuro)
+streamlit>=1.28.0
+gradio>=4.0.0
+plotly>=5.15.0
+
+# Testes (opcional)
+# pytest>=7.4.0
