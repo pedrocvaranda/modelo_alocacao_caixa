@@ -128,10 +128,9 @@ viz.generate_all_plots("meus_graficos/")
 ├── exemplo_uso.py              # Exemplos práticos
 ├── requirements.txt            # Dependências
 ├── README.md                   # Documentação
-└── [Futuro]
-    ├── gui_interface.py        # Interface gráfica
-    ├── ml_optimizer.py         # Otimização com ML
-    └── api_server.py           # API REST
+├── gui_interface.py            # Interface gráfica
+├── ml_optimizer.py             # Otimização com ML
+
 ```
 
 ## 📊 Outputs
@@ -184,27 +183,6 @@ Uma alocação é considerada **válida** se:
 ### Simulação Monte Carlo
 
 O modelo usa Monte Carlo (500-1000 simulações) para estimar com precisão a probabilidade de sobrevivência, considerando a volatilidade e incertezas.
-
-## 🔮 Expansões Futuras
-
-### 1. Interface Gráfica (Streamlit/Gradio)
-```python
-# gui_interface.py 
-import streamlit as st
-
-st.title("💰 Alocação de Caixa")
-dinheiro = st.number_input("Dinheiro em mãos")
-# ... mais inputs
-```
-
-### 2. Otimização com Machine Learning
-```python
-# ml_optimizer.py 
-from sklearn.ensemble import RandomForestRegressor
-
-# Treinar modelo para sugerir melhor alocação
-# baseado em histórico de resultados
-```
 
 ## 📝 Exemplos Práticos
 
