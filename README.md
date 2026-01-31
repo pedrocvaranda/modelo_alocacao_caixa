@@ -1,15 +1,15 @@
-# 💰 Modelo de Alocação de Caixa para Pequenos Operadores
+# Modelo de Alocação de Caixa para Pequenos Operadores
 
 Sistema inteligente de análise e alocação de caixa com simulação de cenários, desenvolvido para responder: **"Como um pequeno operador deve alocar seu caixa entre poupança, reinvestimento e risco em um cenário de incerteza?"**
 
-> 💡 **Sobre o autor:** Desenvolvido por [Pedro Varanda](github.com/pedrocvaranda), 
+> **Sobre o autor:** Desenvolvido por [Pedro Varanda](github.com/pedrocvaranda), 
 > autor de *Varandian Optics* 
 
-## 🎯 Objetivo
+## Objetivo
 
 Maximizar a probabilidade de sobreviver **N meses**, preservando exposição a oportunidades, garantindo que os N meses estejam sempre protegidos.
 
-## 📊 Funcionamento
+## Funcionamento
 
 O modelo recebe 7 variáveis principais:
 1. **Dinheiro em mãos agora** - Capital disponível
@@ -35,7 +35,7 @@ O modelo recebe 7 variáveis principais:
    - Probabilidade de sobrevivência
    - Tempo até zero no cenário ruim
 
-## 🚀 Instalação
+## Instalação
 
 ```bash
 # Instalar dependências
@@ -45,7 +45,7 @@ pip install -r requirements.txt
 pip install numpy pandas matplotlib seaborn openpyxl scikit-learn
 ```
 
-## 💻 Uso Básico
+## Uso Básico
 
 ### Exemplo 1: Uso Simples
 
@@ -122,7 +122,7 @@ viz.plot_dashboard("dashboard.png")
 viz.generate_all_plots("meus_graficos/")
 ```
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 .
@@ -136,7 +136,7 @@ viz.generate_all_plots("meus_graficos/")
 
 ```
 
-## 📊 Outputs
+## Outputs
 
 ### Excel (.xlsx)
 - **Aba Decisão**: Resposta principal (válido/inválido)
@@ -169,7 +169,7 @@ viz.generate_all_plots("meus_graficos/")
 - Probabilidade de sobrevivência
 - Dashboard completo
 
-## 🎓 Conceitos Principais
+## Conceitos Principais
 
 ### Cenários de Simulação
 
@@ -187,7 +187,7 @@ Uma alocação é considerada **válida** se:
 
 O modelo usa Monte Carlo (500-1000 simulações) para estimar com precisão a probabilidade de sobrevivência, considerando a volatilidade e incertezas.
 
-## 📝 Exemplos Práticos
+## Exemplos Práticos
 
 ### Executar Exemplos
 
@@ -200,7 +200,7 @@ python exemplo_uso.py
 # > Escolher "s" no modo interativo
 ```
 
-## 🧪 Testes e Validação
+## Testes e Validação
 
 ```python
 # Testar múltiplas estratégias
@@ -211,7 +211,7 @@ resultados = exemplo_comparacao()
 #          Agressiva, Ultra Agressiva
 ```
 
-## 📈 Interpretação dos Resultados
+## Interpretação dos Resultados
 
 ### Reserva de Segurança (Verde)
 - Capital líquido para emergências
@@ -228,14 +228,14 @@ resultados = exemplo_comparacao()
 - Alta volatilidade
 - Ex: Projetos, apostas calculadas
 
-## ⚠️ Avisos Importantes
+## Avisos Importantes
 
 1. **Não é consultoria financeira**: Este é um modelo educacional
 2. **Resultados são probabilísticos**: Não garantem o futuro
 3. **Ajuste os parâmetros**: Cada negócio é único
 4. **Revise periodicamente**: Condições mudam com o tempo
 
-## 🤝 Contribuindo
+## Contribuindo
 
 Sugestões de melhorias:
 1. Fork o projeto
@@ -244,13 +244,13 @@ Sugestões de melhorias:
 4. Push para a branch
 5. Abra um Pull Request
 
-## 📄 Licença
+## Licença
 
 MIT License - Livre para uso pessoal e comercial
 
 ---
 
-**Desenvolvido para ajudar pequenos operadores a tomar decisões financeiras mais inteligentes e baseadas em dados** 🚀
+**Desenvolvido para ajudar pequenos operadores a tomar decisões financeiras mais inteligentes e baseadas em dados** 
 
 ---
 
