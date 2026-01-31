@@ -251,3 +251,10 @@ MIT License - Livre para uso pessoal e comercial
 ---
 
 **Desenvolvido para ajudar pequenos operadores a tomar decisões financeiras mais inteligentes e baseadas em dados** 🚀
+
+---
+
+![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![ML](https://img.shields.io/badge/ML-scikit--learn-orange.svg)
+![Status](https://img.shields.io/badge/status-active-success.svg)
