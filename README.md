@@ -2,6 +2,9 @@
 
 Sistema inteligente de análise e alocação de caixa com simulação de cenários, desenvolvido para responder: **"Como um pequeno operador deve alocar seu caixa entre poupança, reinvestimento e risco em um cenário de incerteza?"**
 
+> 💡 **Sobre o autor:** Desenvolvido por [Pedro Varanda](github.com/pedrocvaranda), 
+> autor de *Varandian Optics* 
+
 ## 🎯 Objetivo
 
 Maximizar a probabilidade de sobreviver **N meses**, preservando exposição a oportunidades, garantindo que os N meses estejam sempre protegidos.
