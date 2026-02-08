@@ -2,8 +2,12 @@
 
 Sistema inteligente de análise e alocação de caixa com simulação de cenários, desenvolvido para responder: **"Como um pequeno operador deve alocar seu caixa entre poupança, reinvestimento e risco em um cenário de incerteza?"**
 
-> **Sobre o autor:** Desenvolvido por [Pedro Varanda](github.com/pedrocvaranda), 
-> autor de *Varandian Optics* 
+**Sobre o autor:** 
+- Published Research: Varandian Optics (DOI: 10.5281/zenodo.18529071)
+- Under peer review: Journal of the Optical Society of America A
+- #1 Brazil - OBA 2025 (Perfect Score)
+- 3× IOAA Team Selection
+
 
 ## Objetivo
 
