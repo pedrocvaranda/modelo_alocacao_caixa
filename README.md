@@ -258,6 +258,7 @@ MIT License - Livre para uso pessoal e comercial
 
 ---
 
+[![DOI](https://zenodo.org/badge/1146312217.svg)](https://doi.org/10.5281/zenodo.18529638)
 ![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![ML](https://img.shields.io/badge/ML-scikit--learn-orange.svg)
