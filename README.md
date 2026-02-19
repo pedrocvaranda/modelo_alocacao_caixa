@@ -1,271 +1,211 @@
-# Modelo de Alocação de Caixa para Pequenos Operadores
+# 💰 Cash Allocation Model
 
-Sistema inteligente de análise e alocação de caixa com simulação de cenários, desenvolvido para responder: **"Como um pequeno operador deve alocar seu caixa entre poupança, reinvestimento e risco em um cenário de incerteza?"**
+**Smart cash allocation system with scenario simulation and Machine Learning optimization**
 
+---
 
-## Objetivo
+## 🎯 What is This?
 
-Maximizar a probabilidade de sobreviver **N meses**, preservando exposição a oportunidades, garantindo que os N meses estejam sempre protegidos.
+This project answers a practical question: **"How should a small operator allocate their cash between safety, growth, and risk under uncertainty?"**
 
-## Funcionamento
+**Key Features:**
 
-O modelo recebe 7 variáveis principais:
-1. **Dinheiro em mãos agora** - Capital disponível
-2. **Caixa mensal esperado** - Receita mensal
-3. **Despesas fixas** - Custos fixos mensais
-4. **Despesas variáveis** - Custos variáveis mensais
-5. **Volatilidade do caixa mensal** - Incerteza da receita (0-1)
-6. **Tolerância a risco** - Apetite por risco (0-1)
-7. **Oportunidades de investimento**:
-   - **Seguras** (ex: CDI ~0.9% a.m.)
-   - **Médio risco** (ex: Index ~1% a.m.)
-   - **Alto risco** (projetos, apostas ~5% a.m.)
+* 📊 **3-scenario simulation** — Best, Neutral, and Worst cases via Monte Carlo (500–1,000 iterations)
+* 🤖 **Automatic allocation suggestion** — optimized recommendation based on your input parameters
+* ✅ **Strategy validation** — checks whether your allocation guarantees survival in the worst-case scenario
+* 📈 **Full visualizations** — dashboard with allocation pie, cash trajectories, and survival probabilities
+* 📁 **Export** — results in Excel (.xlsx) and JSON formats
 
-### Processo de Análise
+---
 
-1. **Simula 3 cenários**: Bom, Neutro e Ruim
-2. **Responde a pergunta**: "Se eu alocar meu dinheiro assim, eu sobrevivo no cenário ruim?"
-3. **Output**:
-   - ✅/❌ **Alocação válida ou inválida**
-   - % Reserva de segurança
-   - % Crescimento
-   - % Risco
-   - Probabilidade de sobrevivência
-   - Tempo até zero no cenário ruim
+## 🚀 Quick Start
 
-## Instalação
+### Installation
 
 ```bash
-# Instalar dependências
-pip install -r requirements.txt
+# Clone repository
+git clone https://github.com/pedrocvaranda/modelo_alocacao_caixa.git
+cd modelo_alocacao_caixa
 
-# Ou instalar individualmente
-pip install numpy pandas matplotlib seaborn openpyxl scikit-learn
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-## Uso Básico
-
-### Exemplo 1: Uso Simples
+### Your First Analysis
 
 ```python
 from cash_allocation_model import InputParameters, CashAllocationModel
 
-# Definir parâmetros
+# Define parameters
 params = InputParameters(
-    dinheiro_em_maos=100000.0,      # R$ 100k
-    caixa_mensal_esperado=15000.0,  # R$ 15k/mês
-    despesas_fixas=8000.0,          # R$ 8k/mês
-    despesas_variaveis=3000.0,      # R$ 3k/mês
-    volatilidade_caixa=0.15,        # 15% volatilidade
-    tolerancia_risco=0.3,           # Baixa tolerância
-    meses_protegidos=6              # 6 meses protegidos
+    dinheiro_em_maos=100000.0,      # R$ 100k available
+    caixa_mensal_esperado=15000.0,  # R$ 15k/month revenue
+    despesas_fixas=8000.0,          # R$ 8k/month fixed costs
+    despesas_variaveis=3000.0,      # R$ 3k/month variable costs
+    volatilidade_caixa=0.15,        # 15% revenue uncertainty
+    tolerancia_risco=0.3,           # Low risk tolerance
+    meses_protegidos=6              # Protect 6 months of runway
 )
 
-# Criar modelo
+# Create model and suggest allocation
 modelo = CashAllocationModel(params)
-
-# Sugerir alocação automática
 alocacao = modelo.suggest_allocation()
-
-# Avaliar alocação
 resultado = modelo.evaluate_allocation(alocacao)
 
-# Verificar resultado
+# Check result
 if resultado.alocacao_valida:
-    print("✅ ALOCAÇÃO VÁLIDA - Você sobrevive!")
+    print("✅ VALID ALLOCATION — You survive the worst-case scenario!")
 else:
-    print("❌ ALOCAÇÃO INVÁLIDA - Risco alto!")
+    print("❌ INVALID ALLOCATION — Too much risk!")
 
-print(f"Probabilidade sobrevivência: {resultado.probabilidade_sobrevivencia_ruim:.1%}")
+print(f"Survival probability: {resultado.probabilidade_sobrevivencia_ruim:.1%}")
 ```
 
-### Exemplo 2: Alocação Personalizada
+---
+
+## 📐 Model
+
+### The 7 Input Variables
+
+| # | Variable | Description |
+|---|----------|-------------|
+| 1 | Cash on hand | Capital currently available |
+| 2 | Expected monthly cash flow | Projected monthly revenue |
+| 3 | Fixed expenses | Monthly fixed costs |
+| 4 | Variable expenses | Monthly variable costs |
+| 5 | Cash flow volatility | Revenue uncertainty (0–1) |
+| 6 | Risk tolerance | Appetite for risk (0–1) |
+| 7 | Investment opportunities | Safe, medium-risk, and high-risk options |
+
+### Validity Criterion
+
+An allocation is considered **valid** when the worst-case survival probability is ≥ 70% and the N protected months are fully guaranteed.
+
+### The 3 Capital Buckets
+
+```
+Safety Reserve (green)  →  immediate liquidity, low-risk fixed income
+Growth (blue)           →  medium risk, e.g. index funds (~1%/month)
+Risk (red)              →  high potential, e.g. projects (~5%/month)
+```
+
+---
+
+## 📂 Project Structure
+
+```
+modelo_alocacao_caixa/
+├── README.md
+├── src/
+│   ├── cash_allocation_model.py   # Core model and simulation engine
+│   ├── visualizer.py              # Dashboard and chart generation
+│   ├── ml_optimizer.py            # ML-based optimization
+│   └── gui_interface.py           # Graphical interface
+├── examples/
+│   └── exemplo_uso.py             # 🌟 START HERE
+├── data/                          # Input and reference data
+├── models/                        # Trained models
+├── outputs/                       # Generated results
+├── assets/                        # Images and resources
+└── docs/                          # Additional documentation
+```
+
+---
+
+## 🧪 Examples
+
+### Example 1: Custom Allocation
 
 ```python
 from cash_allocation_model import AllocationStrategy
 
-# Definir alocação manual
-alocacao_custom = AllocationStrategy(
+custom_allocation = AllocationStrategy(
     reserva_seguranca_pct=40.0,
     crescimento_pct=40.0,
     risco_pct=20.0
 )
 
-# Avaliar
-resultado = modelo.evaluate_allocation(alocacao_custom)
+resultado = modelo.evaluate_allocation(custom_allocation)
 ```
 
-### Exemplo 3: Exportar Resultados
+### Example 2: Comparing Strategies
 
 ```python
-# Exportar para Excel
-modelo.export_to_excel(resultado, "minha_analise.xlsx")
+from examples.exemplo_uso import exemplo_comparacao
 
-# Exportar para JSON (útil para ML)
-modelo.export_to_json(resultado, "minha_analise.json")
+# Compares: Ultra Conservative, Conservative, Balanced, Aggressive, Ultra Aggressive
+results = exemplo_comparacao()
 ```
 
-### Exemplo 4: Visualizações
+### Example 3: Exporting Results
 
 ```python
-from visualizer import Visualizer
+# Export to Excel (5 sheets: Decision, Values, Parameters, Trajectories, Scenario Details)
+modelo.export_to_excel(resultado, "my_analysis.xlsx")
 
-# Criar visualizador
+# Export to JSON (useful for ML pipelines)
+modelo.export_to_json(resultado, "my_analysis.json")
+```
+
+### Example 4: Visualizations
+
+```python
+from src.visualizer import Visualizer
+
 viz = Visualizer(resultado, params)
-
-# Gerar dashboard completo
-viz.plot_dashboard("dashboard.png")
-
-# Ou gerar todos os gráficos
-viz.generate_all_plots("meus_graficos/")
+viz.plot_dashboard("dashboard.png")     # Full dashboard
+viz.generate_all_plots("charts/")       # All charts individually
 ```
-
-## Estrutura do Projeto
-
-```
-.
-├── cash_allocation_model.py   # Modelo principal
-├── visualizer.py               # Módulo de visualização
-├── exemplo_uso.py              # Exemplos práticos
-├── requirements.txt            # Dependências
-├── README.md                   # Documentação
-├── gui_interface.py            # Interface gráfica
-├── ml_optimizer.py             # Otimização com ML
-
-```
-
-## Outputs
-
-### Excel (.xlsx)
-- **Aba Decisão**: Resposta principal (válido/inválido)
-- **Aba Valores**: Valores absolutos em R$
-- **Aba Parâmetros**: Inputs utilizados
-- **Aba Trajetórias**: Evolução do caixa mês a mês
-- **Aba Detalhes Cenários**: Análise por cenário
-
-### JSON (.json)
-```json
-{
-  "decisao": {
-    "alocacao_valida": true,
-    "probabilidade_sobrevivencia_ruim": 0.85,
-    "tempo_ate_zero_ruim": null
-  },
-  "alocacao": {
-    "reserva_seguranca_pct": 45.2,
-    "crescimento_pct": 42.3,
-    "risco_pct": 12.5
-  },
-  "parametros": {...},
-  "cenarios": {...}
-}
-```
-
-### Gráficos (.png)
-- Pizza da alocação
-- Trajetória dos cenários
-- Probabilidade de sobrevivência
-- Dashboard completo
-
-## Conceitos Principais
-
-### Cenários de Simulação
-
-- **Cenário Bom**: Receitas maiores, despesas menores, retornos acima da média
-- **Cenário Neutro**: Condições esperadas, sem desvios
-- **Cenário Ruim**: Receitas menores, despesas maiores, retornos reduzidos
-
-### Critério de Validade
-
-Uma alocação é considerada **válida** se:
-- Probabilidade de sobrevivência no cenário ruim ≥ 70%
-- Consegue proteger os N meses definidos
-
-### Simulação Monte Carlo
-
-O modelo usa Monte Carlo (500-1000 simulações) para estimar com precisão a probabilidade de sobrevivência, considerando a volatilidade e incertezas.
-
-## Exemplos Práticos
-
-### Executar Exemplos
-
-```bash
-# Executar todos os exemplos
-python exemplo_uso.py
-
-# Modo interativo
-python exemplo_uso.py
-# > Escolher "s" no modo interativo
-```
-
-## Testes e Validação
-
-```python
-# Testar múltiplas estratégias
-from exemplo_uso import exemplo_comparacao
-
-resultados = exemplo_comparacao()
-# Compara: Ultra Conservadora, Conservadora, Balanceada, 
-#          Agressiva, Ultra Agressiva
-```
-
-## Interpretação dos Resultados
-
-### Reserva de Segurança (Verde)
-- Capital líquido para emergências
-- Rende próximo ao CDI
-- Baixíssimo risco
-
-### Crescimento (Azul)
-- Investimentos de médio risco
-- Retorno moderado e estável
-- Ex: Fundos de índice
-
-### Risco (Vermelho)
-- Alto potencial de retorno
-- Alta volatilidade
-- Ex: Projetos, apostas calculadas
-
-## Avisos Importantes
-
-1. **Não é consultoria financeira**: Este é um modelo educacional
-2. **Resultados são probabilísticos**: Não garantem o futuro
-3. **Ajuste os parâmetros**: Cada negócio é único
-4. **Revise periodicamente**: Condições mudam com o tempo
-
-## Contribuindo
-
-Sugestões de melhorias:
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/melhoria`)
-3. Commit suas mudanças
-4. Push para a branch
-5. Abra um Pull Request
-
-## Licença
-
-MIT License - Livre para uso pessoal e comercial
 
 ---
 
-**Desenvolvido para ajudar pequenos operadores a tomar decisões financeiras mais inteligentes e baseadas em dados** 
+## ⚠️ Important Disclaimers
+
+* **Not financial advice** — this is an educational and decision-support tool
+* **Results are probabilistic** — they do not guarantee future outcomes
+* **Tune your parameters** — every business has its own dynamics
+* **Review periodically** — market conditions change over time
 
 ---
 
-## About the Author
+## 👨‍🔬 About the Author
 
 **Pedro Coutinho Varanda**
 
--  **Published Research: Varandian Optics (DOI: 10.5281/zenodo.18529071)**
--  **#1 Brazil** - OBA 2025, Perfect Score
--  **#2 Brazil** - OBA 2023  
--  **#3 Brazil** - OBA 2024
--  **3× Selected** - International Olympiad on Astronomy and Astrophysics (IOAA)
--  **4× Gold** - Canguru Mathematics Competition (2022-2025)
+* 🥇 **#1 Brazil** — National Astronomy Olympiad (OBA 2025, Perfect Score)
+* 🥈 **#2 Brazil** — OBA 2023
+* 🥉 **#3 Brazil** — OBA 2024
+* 🎯 **3× Selected** — International Olympiad on Astronomy and Astrophysics (IOAA)
+* 🥇 **4× Gold** — Canguru Mathematics Competition (2022–2025)
 
-ML/AI | Rio de Janeiro, Brazil 
+ML/AI enthusiast | Rio de Janeiro, Brazil 🇧🇷
 
 [GitHub](https://github.com/pedrocvaranda) • [Email](mailto:pedrocvaranda@gmail.com)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🔗 Related Projects
+
+* [Varandian Optics Simulator](https://github.com/pedrocvaranda/varadian-optics-simulator) — Light propagation simulator in curved spaces
+* [Chess Trainer](https://github.com/pedrocvaranda/treinador-xadrez) — AI-powered chess opening trainer
 
 ---
 
