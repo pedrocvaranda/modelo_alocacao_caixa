@@ -2,11 +2,6 @@
 
 Sistema inteligente de análise e alocação de caixa com simulação de cenários, desenvolvido para responder: **"Como um pequeno operador deve alocar seu caixa entre poupança, reinvestimento e risco em um cenário de incerteza?"**
 
-**Sobre o autor:** 
-- Published Research: Varandian Optics (DOI: 10.5281/zenodo.18529071)
-- #1 Brazil - OBA 2025 (Perfect Score)
-- 3× IOAA Team Selection
-
 
 ## Objetivo
 
@@ -254,6 +249,23 @@ MIT License - Livre para uso pessoal e comercial
 ---
 
 **Desenvolvido para ajudar pequenos operadores a tomar decisões financeiras mais inteligentes e baseadas em dados** 
+
+---
+
+## About the Author
+
+**Pedro Coutinho Varanda**
+
+-  **Published Research: Varandian Optics (DOI: 10.5281/zenodo.18529071)**
+-  **#1 Brazil** - OBA 2025, Perfect Score
+-  **#2 Brazil** - OBA 2023  
+-  **#3 Brazil** - OBA 2024
+-  **3× Selected** - International Olympiad on Astronomy and Astrophysics (IOAA)
+-  **4× Gold** - Canguru Mathematics Competition (2022-2025)
+
+ML/AI | Rio de Janeiro, Brazil 
+
+[GitHub](https://github.com/pedrocvaranda) • [Email](mailto:pedrocvaranda@gmail.com)
 
 ---
 
