@@ -208,8 +208,7 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 * [Chess Trainer](https://github.com/pedrocvaranda/treinador-xadrez) — AI-powered chess opening trainer
 
 ---
-
-[![DOI](https://zenodo.org/badge/1146312217.svg)](https://doi.org/10.5281/zenodo.18529638)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.18529639-blue?style=flat&logo=doi)](https://doi.org/10.5281/zenodo.18529639)
 ![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![ML](https://img.shields.io/badge/ML-scikit--learn-orange.svg)
