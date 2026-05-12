@@ -4,14 +4,12 @@
 
 Dados sintéticos gerados por simulação Monte Carlo para treinar os modelos ML.
 
-### ⚠️ IMPORTANTE: Arquivo não incluído
+### ℹ️ Arquivo incluído no repositório
 
-O arquivo `training_data.csv` **não está no repositório** pois:
-- Tamanho: ~500 KB - 1 MB
-- Pode ser regenerado facilmente
-- Específico para cada treinamento
+O arquivo `training_data.csv` está disponível diretamente na pasta `data/`.  
+Caso queira regenerar com novos parâmetros:
 
-## 🔄 Como Gerar
+## 🔄 Como Regenerar
 
 ### Automático (durante treinamento ML)
 
@@ -25,6 +23,9 @@ O arquivo será criado automaticamente na raiz do projeto.
 ### Manual
 
 ```python
+import sys
+sys.path.insert(0, 'src')
+
 from ml_optimizer import MLOptimizer
 
 optimizer = MLOptimizer()
@@ -36,27 +37,27 @@ df = optimizer.generate_training_data(n_samples=10000)
 
 ### Colunas (Features - Input)
 
-| Coluna | Descrição |
-|--------|-----------|
-| `dinheiro` | Capital inicial |
-| `caixa_mensal` | Receita mensal esperada |
-| `despesas_fixas` | Despesas fixas mensais |
-| `despesas_variaveis` | Despesas variáveis mensais |
-| `volatilidade` | Volatilidade do caixa (0-1) |
-| `tolerancia` | Tolerância a risco (0-1) |
-| `meses_protegidos` | Período de proteção |
-| `indice_folga` | Receita / Despesas (calculado) |
-| `meses_reserva` | Capital / Despesas (calculado) |
+|Coluna              |Descrição                     |
+|--------------------|------------------------------|
+|`dinheiro`          |Capital inicial               |
+|`caixa_mensal`      |Receita mensal esperada       |
+|`despesas_fixas`    |Despesas fixas mensais        |
+|`despesas_variaveis`|Despesas variáveis mensais    |
+|`volatilidade`      |Volatilidade do caixa (0-1)   |
+|`tolerancia`        |Tolerância a risco (0-1)      |
+|`meses_protegidos`  |Período de proteção           |
+|`indice_folga`      |Receita / Despesas (calculado)|
+|`meses_reserva`     |Capital / Despesas (calculado)|
 
 ### Colunas (Targets - Output)
 
-| Coluna | Descrição |
-|--------|-----------|
-| `reserva_pct` | % Reserva de Segurança |
-| `crescimento_pct` | % Crescimento |
-| `risco_pct` | % Risco |
-| `valida` | Alocação é válida? (bool) |
-| `prob_sobrev` | Probabilidade de sobrevivência |
+|Coluna           |Descrição                     |
+|-----------------|------------------------------|
+|`reserva_pct`    |% Reserva de Segurança        |
+|`crescimento_pct`|% Crescimento                 |
+|`risco_pct`      |% Risco                       |
+|`valida`         |Alocação é válida? (bool)     |
+|`prob_sobrev`    |Probabilidade de sobrevivência|
 
 ### Estatísticas
 
@@ -79,7 +80,7 @@ Você pode analisar os dados gerados:
 ```python
 import pandas as pd
 
-df = pd.read_csv('training_data.csv')
+df = pd.read_csv('data/training_data.csv')
 print(df.describe())
 print(f"Alocações válidas: {df['valida'].mean():.1%}")
 ```
@@ -89,7 +90,7 @@ print(f"Alocações válidas: {df['valida'].mean():.1%}")
 Para regenerar dados frescos:
 
 ```bash
-rm training_data.csv
+rm data/training_data.csv
 cd src && python ml_optimizer.py
 ```
 
