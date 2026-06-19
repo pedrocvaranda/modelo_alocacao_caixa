@@ -1,14 +1,9 @@
 # Modelos de Machine Learning
 
-**Os modelos ML não estão incluídos no repositório — você precisa treiná-los localmente.**
+**Os modelos ML estão incluídos no repositório — você não precisa treiná-los localmente.**
 
 ---
 
-## Por que não estão versionados?
-
-Os arquivos `.pkl` são grandes (~10–20 MB) e específicos para cada máquina e conjunto de treino. Eles podem ser regenerados em 2–5 minutos.
-
----
 
 ## Como Treinar
 
