@@ -1,24 +1,25 @@
-# 📋 SUMÁRIO EXECUTIVO
-## Modelo de Alocação de Caixa para Pequenos Operadores
+# Sumário Executivo — Modelo de Alocação de Caixa para Pequenos Operadores
+
+**Decisão objetiva de alocação de capital sob incerteza, baseada em simulação e ML.**
 
 ---
 
-## 🎯 Objetivo
+## Objetivo
 
 Responder à pergunta crítica: **"Como um pequeno operador deve alocar seu caixa entre poupança, reinvestimento e risco em um cenário de incerteza?"**
 
 ---
 
-## 🔑 Proposta de Valor
+## Proposta de Valor
 
-✅ **Decisão Objetiva**: Retorna "SIM" ou "NÃO" baseado em simulações  
-✅ **3 Cenários**: Bom, Neutro e Ruim (pior caso)  
-✅ **Garantia de Sobrevivência**: Protege N meses definidos  
-✅ **Maximiza Oportunidades**: Preserva exposição a crescimento e risco  
+- **Decisão objetiva** — retorna "válido" ou "inválido" baseado em simulações
+- **3 cenários** — Bom, Neutro e Ruim (pior caso)
+- **Garantia de sobrevivência** — protege N meses definidos
+- **Maximiza oportunidades** — preserva exposição a crescimento e risco
 
 ---
 
-## 📊 Inputs do Modelo (7 Variáveis)
+## Inputs do Modelo (7 Variáveis)
 
 | Variável | Descrição | Exemplo |
 |----------|-----------|---------|
@@ -32,65 +33,58 @@ Responder à pergunta crítica: **"Como um pequeno operador deve alocar seu caix
 
 ### Oportunidades de Investimento
 
-- **Seguras**: CDI, Tesouro (~0.9% a.m.)
-- **Médio Risco**: Fundos de índice (~1% a.m.)
-- **Alto Risco**: Projetos, apostas (~5% a.m.)
+- **Seguras** — CDI, Tesouro (~0.9% a.m.)
+- **Médio Risco** — Fundos de índice (~1% a.m.)
+- **Alto Risco** — Projetos, apostas (~5% a.m.)
 
 ---
 
-## 📈 Outputs do Modelo
+## Outputs do Modelo
 
 ### Resposta Principal
-```
-SE alocação válida → ✅ "VOCÊ SOBREVIVE NO CENÁRIO RUIM"
-SE alocação inválida → ❌ "RISCO ALTO DE NÃO SOBREVIVER"
+
+```text
+SE alocação válida   → "VOCE SOBREVIVE NO CENARIO RUIM"
+SE alocação inválida → "RISCO ALTO DE NAO SOBREVIVER"
 ```
 
 ### Métricas Detalhadas
 
-1. **% Reserva de Segurança** (capital líquido)
-2. **% Crescimento** (investimentos médio risco)
-3. **% Risco** (investimentos alto risco)
-4. **Probabilidade de Sobrevivência** (cenário ruim)
-5. **Tempo até Zero** (cenário ruim, se aplicável)
+1. % Reserva de Segurança (capital líquido)
+2. % Crescimento (investimentos médio risco)
+3. % Risco (investimentos alto risco)
+4. Probabilidade de Sobrevivência (cenário ruim)
+5. Tempo até Zero (cenário ruim, se aplicável)
 
 ---
 
-## 🔄 Metodologia
+## Metodologia
 
-### 1. Simulação de Cenários
+### Simulação de Cenários
 
-**Cenário Bom:**
-- Receitas +15%
-- Despesas -10%
-- Retornos +20%
+**Cenário Bom** — receitas +15%, despesas −10%, retornos +20%
 
-**Cenário Neutro:**
-- Condições esperadas
-- Baseline
+**Cenário Neutro** — condições esperadas (baseline)
 
-**Cenário Ruim:**
-- Receitas -30%
-- Despesas +20%
-- Retornos -50%
+**Cenário Ruim** — receitas −30%, despesas +20%, retornos −50%
 
-### 2. Critério de Validade
+### Critério de Validade
 
-Alocação é **válida** se:
-- Probabilidade de sobrevivência ≥ 70% no cenário ruim
-- Protege todos os N meses definidos
+Alocação é **válida** quando:
+- Probabilidade de sobrevivência >= 70% no cenário ruim
+- Todos os N meses definidos estão protegidos
 
-### 3. Monte Carlo (Opcional)
+### Monte Carlo
 
-500-1000 simulações para estimar probabilidades com alta precisão
+500–1.000 simulações para estimar probabilidades com alta precisão.
 
 ---
 
-## 💻 Arquitetura Técnica
+## Arquitetura Técnica
 
 ### Módulos Core
 
-```
+```text
 cash_allocation_model.py
 ├── InputParameters       # Dataclass com inputs
 ├── AllocationStrategy    # Estratégia de alocação (%, %, %)
@@ -107,28 +101,30 @@ cash_allocation_model.py
 
 ### Módulos Auxiliares
 
-- **visualizer.py**: Gráficos (matplotlib, seaborn)
-- **exemplo_uso.py**: 4 exemplos práticos
-- **teste_rapido.py**: Teste automatizado
+- `visualizer.py` — gráficos (matplotlib, seaborn)
+- `exemplo_uso.py` — 4 exemplos práticos
+- `teste_rapido.py` — teste automatizado
 
 ### Expansões Futuras (Templates)
 
-- **gui_streamlit.py**: Interface web interativa
-- **ml_optimizer.py**: Otimização com ML
+- `gui_streamlit.py` — interface web interativa
+- `ml_optimizer.py` — otimização com ML
 
 ---
 
-## 📊 Formato dos Dados
+## Formato dos Dados
 
-### Excel (.xlsx) - 5 Abas
+### Excel (.xlsx) — 5 Abas
 
-1. **Decisão**: Resposta principal (válido/inválido)
-2. **Valores**: Alocação em R$
-3. **Parâmetros**: Inputs utilizados
-4. **Trajetórias**: Evolução mês a mês
-5. **Detalhes Cenários**: Análise comparativa
+| Aba | Conteúdo |
+|-----|----------|
+| Decisão | Resposta principal (válido/inválido) |
+| Valores | Alocação em R$ |
+| Parâmetros | Inputs utilizados |
+| Trajetórias | Evolução mês a mês |
+| Detalhes Cenários | Análise comparativa |
 
-### JSON (.json) - Estruturado
+### JSON (.json) — Estruturado
 
 ```json
 {
@@ -141,39 +137,42 @@ cash_allocation_model.py
     "crescimento_pct": 42.3,
     "risco_pct": 12.5
   },
-  "parametros": {...},
-  "cenarios": {...}
+  "parametros": {},
+  "cenarios": {}
 }
 ```
 
 ---
 
-## 🎨 Visualizações
+## Visualizações
 
-1. **Pizza**: Distribuição da alocação (%, %)
-2. **Trajetórias**: Evolução do caixa nos 3 cenários
-3. **Barras**: Probabilidade de sobrevivência
-4. **Dashboard**: Visão completa consolidada
+1. **Pizza** — distribuição da alocação (%)
+2. **Trajetórias** — evolução do caixa nos 3 cenários
+3. **Barras** — probabilidade de sobrevivência
+4. **Dashboard** — visão completa consolidada
 
 ---
 
-## 🔮 Roadmap de Expansões
+## Roadmap
 
-### Fase 1: Implementado ✅
+### Fase 1 — Implementado
+
 - [x] Modelo core funcional
 - [x] Simulação de 3 cenários
 - [x] Exportação Excel + JSON
 - [x] Visualizações completas
 - [x] Documentação extensiva
 
-### Fase 2: Planejado 🔄
+### Fase 2 — Planejado
+
 - [ ] Interface gráfica (Streamlit)
 - [ ] Otimização com ML
 - [ ] API REST
 - [ ] Integração com bancos (OFX/CSV)
 - [ ] Atualização automática de taxas
 
-### Fase 3: Avançado 🚀
+### Fase 3 — Avançado
+
 - [ ] App mobile
 - [ ] Multi-usuário / colaborativo
 - [ ] Relatórios automatizados
@@ -182,106 +181,46 @@ cash_allocation_model.py
 
 ---
 
-## ⚙️ Stack Tecnológico
+## Stack Tecnológico
 
-### Core
-- Python 3.12+
-- NumPy (simulações numéricas)
-- Pandas (manipulação de dados)
-
-### Visualização
-- Matplotlib (gráficos)
-- Seaborn (estilização)
-
-### Storage
-- OpenPyXL (Excel)
-- JSON (estruturado)
-
-### Futuro
-- Scikit-learn (ML)
-- Streamlit/Gradio (GUI)
-- FastAPI (API)
+| Camada | Tecnologia |
+|--------|-----------|
+| Core | Python 3.12+, NumPy, Pandas |
+| Visualização | Matplotlib, Seaborn |
+| Storage | OpenPyXL (Excel), JSON |
+| Futuro | Scikit-learn, Streamlit, FastAPI |
 
 ---
 
-## 📏 Métricas de Sucesso
+## Casos de Uso
 
-### Para o Usuário
-- ✅ Decisão clara em <1 minuto
-- ✅ Múltiplas estratégias comparáveis
-- ✅ Dados exportáveis e auditáveis
-- ✅ Visualizações intuitivas
+### Pequeno Empreendedor
 
-### Para Desenvolvedores
-- ✅ Código modular e extensível
-- ✅ Documentação completa
-- ✅ Fácil integração (API JSON)
-- ✅ Testes automatizados
+Situação: R$ 100k no caixa, receita volátil. Resultado: proteção de 6 meses + exposição a crescimento.
 
----
+### Freelancer
 
-## 🎓 Casos de Uso
+Situação: renda irregular, despesas fixas altas. Resultado: evitar quebra em meses ruins.
 
-### 1. Pequeno Empreendedor
-**Situação**: R$ 100k no caixa, receita volátil  
-**Uso**: Decidir quanto alocar vs quanto investir  
-**Resultado**: Proteção de 6 meses + exposição a crescimento
+### Startup Early-Stage
 
-### 2. Freelancer
-**Situação**: Renda irregular, despesas fixas altas  
-**Uso**: Planejar reserva de emergência  
-**Resultado**: Evitar quebra em meses ruins
+Situação: capital limitado, runway crítico. Resultado: maximizar runway sem perder oportunidades.
 
-### 3. Startup Early-Stage
-**Situação**: Capital limitado, runway crítico  
-**Uso**: Balancear burn rate vs investimento  
-**Resultado**: Maximizar runway sem perder oportunidades
+### Trader / Investidor
 
-### 4. Trader/Investidor
-**Situação**: Gestão de capital de trading  
-**Uso**: Alocar entre risco e segurança  
-**Resultado**: Preservar capital em drawdowns
+Situação: gestão de capital de trading. Resultado: preservar capital em drawdowns.
 
 ---
 
-## ⚖️ Limitações e Disclaimers
+## Limitações e Disclaimers
 
-⚠️ **Não é consultoria financeira**  
-⚠️ **Modelo probabilístico** (não garante o futuro)  
-⚠️ **Simplificações** (não captura todos os riscos)  
-⚠️ **Requer validação** (ajustar à realidade específica)
-
----
-
-## 📞 Suporte e Contribuições
-
-### Como Usar
-1. Ler `GUIA_RAPIDO.md`
-2. Executar `teste_rapido.py`
-3. Adaptar parâmetros
-4. Analisar resultados
-
-### Como Contribuir
-1. Fork do projeto
-2. Implementar melhorias
-3. Testar extensivamente
-4. Pull request com documentação
+- **Não é consultoria financeira**
+- **Modelo probabilístico** — não garante o futuro
+- **Simplificações** — não captura todos os riscos
+- **Requer validação** — ajustar à realidade específica
 
 ---
 
-## 📄 Licença
+## Status do Projeto
 
-MIT License - Livre para uso pessoal e comercial
-
----
-
-## ✅ Status do Projeto
-
-**Versão**: 1.0.0  
-**Status**: ✅ Funcional e Testado  
-**Data**: Janeiro 2026  
-**Última Atualização**: 29/01/2026  
-
----
-
-**Desenvolvido para empoderar pequenos operadores com decisões financeiras inteligentes baseadas em dados.** 🚀
+**Versão**: 1.0.0 | **Status**: Funcional e testado | **Última atualização**: Janeiro 2026
