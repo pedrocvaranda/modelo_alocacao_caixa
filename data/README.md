@@ -1,15 +1,16 @@
-# 📊 Dados de Treinamento
+# Dados de Treinamento
+
+**Dados sintéticos gerados por simulação Monte Carlo para treinar os modelos ML.**
+
+---
 
 ## training_data.csv
 
-Dados sintéticos gerados por simulação Monte Carlo para treinar os modelos ML.
+O arquivo `training_data.csv` **não está no repositório** pois seu tamanho (~500 KB–1 MB) e especificidade por treinamento não justificam versionamento. Ele pode ser regenerado a qualquer momento.
 
-### ℹ️ Arquivo incluído no repositório
+---
 
-O arquivo `training_data.csv` está disponível diretamente na pasta `data/`.  
-Caso queira regenerar com novos parâmetros:
-
-## 🔄 Como Regenerar
+## Como Gerar
 
 ### Automático (durante treinamento ML)
 
@@ -23,9 +24,6 @@ O arquivo será criado automaticamente na raiz do projeto.
 ### Manual
 
 ```python
-import sys
-sys.path.insert(0, 'src')
-
 from ml_optimizer import MLOptimizer
 
 optimizer = MLOptimizer()
@@ -33,70 +31,79 @@ df = optimizer.generate_training_data(n_samples=10000)
 # Salvo automaticamente como 'training_data.csv'
 ```
 
-## 📋 Estrutura dos Dados
+---
 
-### Colunas (Features - Input)
+## Estrutura dos Dados
 
-|Coluna              |Descrição                     |
-|--------------------|------------------------------|
-|`dinheiro`          |Capital inicial               |
-|`caixa_mensal`      |Receita mensal esperada       |
-|`despesas_fixas`    |Despesas fixas mensais        |
-|`despesas_variaveis`|Despesas variáveis mensais    |
-|`volatilidade`      |Volatilidade do caixa (0-1)   |
-|`tolerancia`        |Tolerância a risco (0-1)      |
-|`meses_protegidos`  |Período de proteção           |
-|`indice_folga`      |Receita / Despesas (calculado)|
-|`meses_reserva`     |Capital / Despesas (calculado)|
+### Features (Input)
 
-### Colunas (Targets - Output)
+| Coluna | Descrição |
+|--------|-----------|
+| `dinheiro` | Capital inicial |
+| `caixa_mensal` | Receita mensal esperada |
+| `despesas_fixas` | Despesas fixas mensais |
+| `despesas_variaveis` | Despesas variáveis mensais |
+| `volatilidade` | Volatilidade do caixa (0–1) |
+| `tolerancia` | Tolerância a risco (0–1) |
+| `meses_protegidos` | Período de proteção |
+| `indice_folga` | Receita / Despesas (calculado) |
+| `meses_reserva` | Capital / Despesas (calculado) |
 
-|Coluna           |Descrição                     |
-|-----------------|------------------------------|
-|`reserva_pct`    |% Reserva de Segurança        |
-|`crescimento_pct`|% Crescimento                 |
-|`risco_pct`      |% Risco                       |
-|`valida`         |Alocação é válida? (bool)     |
-|`prob_sobrev`    |Probabilidade de sobrevivência|
+### Targets (Output)
+
+| Coluna | Descrição |
+|--------|-----------|
+| `reserva_pct` | % Reserva de Segurança |
+| `crescimento_pct` | % Crescimento |
+| `risco_pct` | % Risco |
+| `valida` | Alocação é válida? (bool) |
+| `prob_sobrev` | Probabilidade de sobrevivência |
 
 ### Estatísticas
 
 - **Linhas**: 10.000 (padrão)
 - **Formato**: CSV UTF-8
-- **Tamanho**: ~500 KB - 1 MB
+- **Tamanho**: ~500 KB–1 MB
 - **Separador**: `,` (vírgula)
 
-## 🔍 Exemplo de Dados
+---
+
+## Exemplo de Dados
 
 ```csv
 dinheiro,caixa_mensal,despesas_fixas,despesas_variaveis,volatilidade,tolerancia,meses_protegidos,indice_folga,meses_reserva,reserva_pct,crescimento_pct,risco_pct,valida,prob_sobrev
 100000.0,15000.0,8000.0,3000.0,0.15,0.3,6,1.36,9.09,16.2,76.26,7.54,1.0,1.0
 ```
 
-## 📊 Análise Exploratória
+---
 
-Você pode analisar os dados gerados:
+## Análise Exploratória
 
 ```python
 import pandas as pd
 
-df = pd.read_csv('data/training_data.csv')
+df = pd.read_csv('training_data.csv')
 print(df.describe())
 print(f"Alocações válidas: {df['valida'].mean():.1%}")
 ```
 
-## 🧹 Limpeza
+---
+
+## Limpeza
 
 Para regenerar dados frescos:
 
 ```bash
-rm data/training_data.csv
+rm training_data.csv
 cd src && python ml_optimizer.py
 ```
 
-## 📝 Notas
+---
+
+## Notas
 
 - Dados são sintéticos (gerados por simulação)
 - Representam cenários diversos de pequenos operadores
 - Usados apenas para treinar modelos ML
 - Não contêm dados reais ou sensíveis
+
