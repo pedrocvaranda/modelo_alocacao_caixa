@@ -4,12 +4,6 @@
 
 ---
 
-## training_data.csv
-
-O arquivo `training_data.csv` **não está no repositório** pois seu tamanho (~500 KB–1 MB) e especificidade por treinamento não justificam versionamento. Ele pode ser regenerado a qualquer momento.
-
----
-
 ## Como Gerar
 
 ### Automático (durante treinamento ML)
